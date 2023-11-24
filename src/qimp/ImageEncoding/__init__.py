@@ -1,0 +1,1 @@
+"""Image subpackage for qimp."""
