@@ -1,13 +1,15 @@
+from qimp.ImageEncoding.QuantumImage import QuantumImage
+
 from .Gates import traslate_circuit
 
 
-def sobel(quantumImage: object) -> None:
+def sobel(quantumImage: QuantumImage) -> None:
     """Quantum implementation of the Sobel filter, it takes in input a quantum image object and
         applies the required transformations.
 
 
     Args:
-        quantumImage (object): Input quantum image.
+        quantumImage (QuantumImage): Input quantum image.
     """
     quantumImage.reverse()
     quantumImage.add_qubits(4, "aux")
