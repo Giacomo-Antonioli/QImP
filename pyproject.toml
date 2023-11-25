@@ -33,6 +33,7 @@ classifiers=[
 
 [tool.poetry.dependencies]
 python = "<3.12,>=3.8"
+types-tqdm = "^4.66.0.5"
 
 
 [tool.poetry.group.dev.dependencies]
