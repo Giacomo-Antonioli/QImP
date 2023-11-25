@@ -1,3 +1,4 @@
+"""Quantum image class."""
 import math
 
 import matplotlib.pyplot as plt

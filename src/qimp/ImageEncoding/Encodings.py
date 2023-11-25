@@ -4,7 +4,7 @@ import qiskit
 from qiskit.circuit.library.standard_gates import RYGate
 from tqdm import tqdm
 
-import qimp.ImageEncoding.QuantumImage
+from .QuantumImage import QuantumImage
 
 
 def hadamard(circ: qiskit.QuantumCircuit, n: list) -> None:
@@ -21,11 +21,11 @@ def hadamard(circ: qiskit.QuantumCircuit, n: list) -> None:
         circ.h(i)
 
 
-def xyfrqi(quantumimage: qimp.ImageEncoding.QuantumImage.QuantumImage) -> None:
+def xyfrqi(quantumimage: QuantumImage) -> None:
     """FRQI encoding with xy variant.
 
     Args:
-        quantumimage (qimp.ImageEncoding.QuantumImage.QuantumImage): Target Image.
+        quantumimage (QuantumImage): Target Image.
 
 
     Returns: None
@@ -44,6 +44,7 @@ def xyfrqi(quantumimage: qimp.ImageEncoding.QuantumImage.QuantumImage) -> None:
     nqubits: int = quantumimage.circuit.num_qubits
     print("TOTQUB: " + str(nqubits))
     print("requiredqubits:" + str(quantumimage.required_qubits))
+    y_old = ""
     for index_row, rows in enumerate(tqdm(quantumimage.angles)):
         x_old = bitsneeded.format(index_row - 1)[::-1]
         if index_row == 0:
@@ -53,7 +54,7 @@ def xyfrqi(quantumimage: qimp.ImageEncoding.QuantumImage.QuantumImage) -> None:
 
         for index_cols, i in enumerate((rows)):
             y = bitsneeded.format(index_cols)
-            y_old = None
+
             if index_row + index_cols > 0:
                 if changed:
                     changed = False
@@ -99,12 +100,12 @@ def xyfrqi(quantumimage: qimp.ImageEncoding.QuantumImage.QuantumImage) -> None:
             # circ.barrier()
 
 
-def FRQI(quantumImage: qimp.ImageEncoding.QuantumImage.QuantumImage) -> None:
+def FRQI(quantumImage: QuantumImage) -> None:
     """
     FRQI encoding for a quantum image.
 
     Args:
-        quantumImage (qimp.ImageEncoding.QuantumImage.QuantumImage): Target Image.
+        quantumImage (QuantumImage): Target Image.
 
     Returns: None
 
