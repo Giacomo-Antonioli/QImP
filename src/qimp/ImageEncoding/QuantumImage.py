@@ -42,21 +42,23 @@ def test_image(side: int = 8) -> numpy.ndarray:
 class QuantumImage(object):
     """General class to implement represent a classical image in Qiskit."""
 
-    angles = None
-    circuit = None
-    x_qubits = None
-    y_qubits = None
-    color_qubit = None
-    total_qubits = None
-    initial_qubits = None
-    x_wires = None
-    y_wires = None
-    c_wire = None
-    pos_wires = None
-    total_wires = None
+    angles = []
+    circuit = QuantumCircuit()
+    x_qubits = QuantumRegister()
+    y_qubits = QuantumRegister()
+    color_qubit = QuantumRegister()
+    total_qubits = 0
+    initial_qubits = 0
+    x_wires = []
+    y_wires = []
+    c_wire = []
+    pos_wires = []
+    total_wires = list
     n_aux_qubit = 0
-    encoding = None
-    circuit = None
+    encoding = str
+    num_carry = 0
+    num_summing = 0
+    circuit = QuantumCircuit()
 
     def __init__(self, image: numpy.ndarray, zooming_factor: int = 1) -> None:
         """
@@ -72,7 +74,6 @@ class QuantumImage(object):
             Exception: Wrong image format.
         """
 
-        self.num_summing = None
         if isinstance(image, (list, pd.core.series.Series)):  # Check if the input type is valid
             self.image = np.array(image)
         elif isinstance(image, np.ndarray):
