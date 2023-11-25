@@ -24,8 +24,7 @@ jobs:
           pip install poetry
           poetry config virtualenvs.in-project true
           poetry install --no-root --only dev --only linters --sync
-          poetry shell
-          python3 -m pip install types-tqdm
+          poetry install types-tqdm
 
       - name: Linting
         shell: bash
