@@ -42,23 +42,24 @@ def test_image(side: int = 8) -> numpy.ndarray:
 class QuantumImage(object):
     """General class to implement represent a classical image in Qiskit."""
 
-    angles = []
+    angles: list[float] = list()
     circuit = QuantumCircuit()
     x_qubits = QuantumRegister()
     y_qubits = QuantumRegister()
     color_qubit = QuantumRegister()
     total_qubits = 0
     initial_qubits = 0
-    x_wires = []
-    y_wires = []
-    c_wire = []
-    pos_wires = []
-    total_wires = list
+    x_wires: list[int] = []
+    y_wires: list[int] = []
+    c_wire: list[int] = []
+    pos_wires: list[int] = []
+    total_wires: list[int] = list
     n_aux_qubit = 0
     encoding = str
     num_carry = 0
     num_summing = 0
     circuit = QuantumCircuit()
+    image = np.ndarray
 
     def __init__(self, image: numpy.ndarray, zooming_factor: int = 1) -> None:
         """
@@ -153,7 +154,7 @@ class QuantumImage(object):
         self.circuit.draw(output="mpl")
         plt.show()
 
-    def insert_qubits(self, n: int, name: str = None) -> None:
+    def insert_qubits(self, n: int, name: str = "") -> None:
         """Insert qubits in the image circuit.
 
         Args:
@@ -167,7 +168,7 @@ class QuantumImage(object):
         self.circuit.regs.insert(0, qr1)
         # TODO: Modify for insertion on top
 
-    def add_qubits(self, n: int, name: str = None) -> None:
+    def add_qubits(self, n: int, name: str = "") -> None:
         """Append qubits.
 
         Args:
