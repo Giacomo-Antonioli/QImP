@@ -55,6 +55,7 @@ class QuantumImage(object):
     total_wires = None
     n_aux_qubit = 0
     encoding = None
+    circuit = None
 
     def __init__(self, image: numpy.ndarray, zooming_factor: int = 1) -> None:
         """
