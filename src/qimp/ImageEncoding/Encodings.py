@@ -52,7 +52,7 @@ def xyfrqi(quantumimage: QuantumImage) -> None:
         else:
             changed = True
 
-        for index_cols, i in enumerate(rows):  # type: np.ndarray
+        for index_cols, i in enumerate(rows):  # i: np.ndarray
             y = bitsneeded.format(index_cols)
 
             if index_row + index_cols > 0:

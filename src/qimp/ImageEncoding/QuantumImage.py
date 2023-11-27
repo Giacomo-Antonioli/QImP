@@ -44,7 +44,7 @@ def test_image(side: int = 8) -> numpy.ndarray:
 class QuantumImage(object):
     """General class to implement represent a classical image in Qiskit."""
 
-    angles: typing.List[float] = []
+    angles: numpy.ndarray = []
     circuit = QuantumCircuit(1)
     x_qubits = QuantumRegister(1)
     y_qubits = QuantumRegister(1)
