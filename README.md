@@ -16,9 +16,10 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg)](https://www.contributor-covenant.org/version/2/0/code_of_conduct/)
 
 </div>
+![QImP Mascotte](https://github.com/Giacomo-Antonioli/QImP/blob/main/img/QImP.jpg?raw=true)
 
 
-Quantum image manimupaltion package wrapper for Qiskit.
+Quantum image manipulation package wrapper for Qiskit.
 
 
 * GitHub repo: <https://github.com/Giacomo-Antonioli/qimp.git>
