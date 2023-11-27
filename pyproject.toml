@@ -135,6 +135,7 @@ target-version = ["py38"]
 [tool.mypy]
 warn_return_any = true
 warn_unused_configs = true
+ignore_missing_imports = true
 
 [[tool.mypy.overrides]]
 module = ["pytest.*", "invoke.*", "nox.*", "nox_poetry.*"]
