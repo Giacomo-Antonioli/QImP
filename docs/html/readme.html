@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Qimp &#8212; qimp 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=28c8e701" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=2389946f"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Welcome to Qimp’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  <div class="document">
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">qimp</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Giacomo-Antonioli&repo=qimp&type=watch&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Qimp</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#features">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#quickstart">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#credits">Credits</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="license.html">License</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Qimp’s documentation!</a></li>
+      <li>Next: <a href="installation.html" title="next chapter">Installation</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="qimp">
+<h1>Qimp<a class="headerlink" href="#qimp" title="Permalink to this heading">¶</a></h1>
+<div align="center"><p><a class="reference external" href="https://pypi.python.org/pypi/qimp"><img alt="PyPI - Version" src="https://img.shields.io/pypi/v/qimp.svg" /></a>
+<a class="reference external" href="https://pypi.python.org/pypi/qimp"><img alt="PyPI - Python Version" src="https://img.shields.io/pypi/pyversions/qimp.svg" /></a>
+<a class="reference external" href="https://github.com/Giacomo-Antonioli/qimp/actions?workflow=tests"><img alt="Tests" src="https://github.com/Giacomo-Antonioli/qimp/workflows/tests/badge.svg" /></a>
+<a class="reference external" href="https://codecov.io/gh/Giacomo-Antonioli/qimp"><img alt="Codecov" src="https://codecov.io/gh/Giacomo-Antonioli/qimp/branch/main/graph/badge.svg" /></a>
+<a class="reference external" href="https://qimp.readthedocs.io/"><img alt="Read the Docs" src="https://readthedocs.org/projects/qimp/badge/" /></a>
+<a class="reference external" href="https://pypi.python.org/pypi/qimp"><img alt="PyPI - License" src="https://img.shields.io/pypi/l/qimp.svg" /></a></p>
+<p><a class="reference external" href="https://github.com/psf/black"><img alt="Black" src="https://img.shields.io/badge/code%20style-black-000000.svg" /></a>
+<a class="reference external" href="https://github.com/pre-commit/pre-commit"><img alt="pre-commit" src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&amp;logoColor=white" /></a>
+<a class="reference external" href="https://www.contributor-covenant.org/version/2/0/code_of_conduct/"><img alt="Contributor Covenant" src="https://img.shields.io/badge/Contributor%20Covenant-2.0-4baaaa.svg" /></a></p>
+</div>
+![QImP Mascotte](https://github.com/Giacomo-Antonioli/QImP/blob/main/img/QImP.jpg?raw=true)<p>Quantum image manipulation package wrapper for Qiskit.</p>
+<ul class="simple">
+<li><p>GitHub repo: <a class="reference external" href="https://github.com/Giacomo-Antonioli/qimp.git">https://github.com/Giacomo-Antonioli/qimp.git</a></p></li>
+<li><p>Documentation: <a class="reference external" href="https://qimp.readthedocs.io">https://qimp.readthedocs.io</a></p></li>
+<li><p>Free software: MIT</p></li>
+</ul>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>TODO</p></li>
+</ul>
+</section>
+<section id="quickstart">
+<h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this heading">¶</a></h2>
+<p>TODO</p>
+</section>
+<section id="credits">
+<h2>Credits<a class="headerlink" href="#credits" title="Permalink to this heading">¶</a></h2>
+<p>This package was created with <a class="reference external" href="https://github.com/cookiecutter/cookiecutter">Cookiecutter</a> and the <a class="reference external" href="https://github.com/fedejaure/cookiecutter-modern-pypackage">fedejaure/cookiecutter-modern-pypackage</a> project template.</p>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+    <div class="clearer"></div>
+  </div>
+    <div class="footer">
+      &copy;2023, Giacomo Antonioli.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/readme.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/Giacomo-Antonioli/qimp" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
