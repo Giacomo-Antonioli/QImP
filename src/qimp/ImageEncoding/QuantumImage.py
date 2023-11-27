@@ -7,6 +7,7 @@ import numpy
 import numpy as np
 import pandas as pd
 from qiskit import ClassicalRegister, QuantumCircuit, QuantumRegister
+from qiskit.result import Result
 from scipy.ndimage import zoom
 from tqdm import tqdm
 
@@ -44,22 +45,22 @@ class QuantumImage(object):
     """General class to implement represent a classical image in Qiskit."""
 
     angles: typing.List[float] = []
-    circuit = QuantumCircuit()
-    x_qubits = QuantumRegister()
-    y_qubits = QuantumRegister()
-    color_qubit = QuantumRegister()
-    total_qubits = 0
-    initial_qubits = 0
+    circuit = QuantumCircuit(1)
+    x_qubits = QuantumRegister(1)
+    y_qubits = QuantumRegister(1)
+    color_qubit = QuantumRegister(1)
+    total_qubits: int = 0
+    initial_qubits: int = 0
     x_wires: typing.List[int] = []
     y_wires: typing.List[int] = []
     c_wire: int = 0
     pos_wires: typing.List[int] = []
     total_wires: typing.List[int] = []
-    n_aux_qubit = 0
-    encoding = str
-    num_carry = 0
-    num_summing = 0
-    circuit = QuantumCircuit()
+    n_aux_qubit: int = 0
+    encoding: str = ""
+    num_carry: int = 0
+    num_summing: int = 0
+    circuit = QuantumCircuit(1)
     image = np.ndarray
 
     def __init__(self, image: numpy.ndarray, zooming_factor: int = 1) -> None:
@@ -190,11 +191,11 @@ class QuantumImage(object):
         """
         self.circuit = self.circuit.reverse_bits()
 
-    def retrieve_and_show(self, result: object, numOfShots: int) -> None:
+    def retrieve_and_show(self, result: Result, numOfShots: int) -> None:
         """Run experiments and show result, it requires measurements.
 
         Args:
-            result (object): where to store the results.
+            result (Result): where to store the results.
             numOfShots (int): number of experiments to run.
 
         Returns: None

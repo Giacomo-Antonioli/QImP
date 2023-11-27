@@ -52,7 +52,7 @@ def xyfrqi(quantumimage: QuantumImage) -> None:
         else:
             changed = True
 
-        for index_cols, i in enumerate((rows)):
+        for index_cols, i in enumerate(rows):  # type: np.ndarray
             y = bitsneeded.format(index_cols)
 
             if index_row + index_cols > 0:
@@ -112,7 +112,7 @@ def FRQI(quantumImage: QuantumImage) -> None:
     Raises:
         Exception: If the image has already been encoded."""
 
-    if quantumImage.encoding is None:
+    if quantumImage.encoding == "":
         quantumImage.total_qubits = int(quantumImage.required_qubits + 1)
         quantumImage.compute_angles()
         quantumImage.init_circuit()
