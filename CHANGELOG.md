@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.1.0] - 2023-11-24
 ### Added
+- First release.
+## [0.1.1] - 2023-11-27
+### Added
 - First release on PyPI.
 
 [Unreleased]: https://github.com/Giacomo-Antonioli/qimp/compare/v0.1.0...HEAD
