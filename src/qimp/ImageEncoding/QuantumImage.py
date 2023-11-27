@@ -190,11 +190,11 @@ class QuantumImage(object):
         """
         self.circuit = self.circuit.reverse_bits()
 
-    def retrieve_and_show(self, result: dict, numOfShots: int) -> None:
+    def retrieve_and_show(self, result: object, numOfShots: int) -> None:
         """Run experiments and show result, it requires measurements.
 
         Args:
-            result (dict): where to store the results.
+            result (object): where to store the results.
             numOfShots (int): number of experiments to run.
 
         Returns: None
