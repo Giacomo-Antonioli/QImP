@@ -1,5 +1,6 @@
 """Quantum image class."""
 import math
+import typing
 
 import matplotlib.pyplot as plt
 import numpy
@@ -42,7 +43,7 @@ def test_image(side: int = 8) -> numpy.ndarray:
 class QuantumImage(object):
     """General class to implement represent a classical image in Qiskit."""
 
-    angles: list[float] = list()
+    angles: typing.List[float] = list()
     circuit = QuantumCircuit()
     x_qubits = QuantumRegister()
     y_qubits = QuantumRegister()
