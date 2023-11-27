@@ -1,7 +1,7 @@
 from ImageEncoding.Encodings import FRQI
 from ImageEncoding.QuantumImage import QuantumImage, test_image
 
-# Press the green button in the gutter to run the script. yo
+# Press the green button in the gutter to run the script.
 if __name__ == "__main__":
     image = QuantumImage(test_image(side=4), zooming_factor=1)
     print(image.__info__())
