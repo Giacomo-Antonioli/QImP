@@ -1,7 +1,7 @@
 
 [tool.poetry]
 name = "qimp"
-version = "0.2.0"
+version = "0.2.1"
 description = "Quantum image manimupaltion package wrapper for Qiskit."
 authors = ["Giacomo Antonioli <giacomo.antonioli@phd.unipi.it>"]
 
