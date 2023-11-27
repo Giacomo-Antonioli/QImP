@@ -119,5 +119,5 @@ def FRQI(quantumImage: QuantumImage) -> None:
     else:
         raise Exception("The image has allready been encoded")
 
-    hadamard(quantumImage.circuit, range(quantumImage.total_qubits - 1))
+    hadamard(quantumImage.circuit, [x for x in range(quantumImage.total_qubits - 1)])
     xyfrqi(quantumImage)  # 1
