@@ -43,18 +43,18 @@ def test_image(side: int = 8) -> numpy.ndarray:
 class QuantumImage(object):
     """General class to implement represent a classical image in Qiskit."""
 
-    angles: typing.List[float] = list()
+    angles: typing.List[float] = []
     circuit = QuantumCircuit()
     x_qubits = QuantumRegister()
     y_qubits = QuantumRegister()
     color_qubit = QuantumRegister()
     total_qubits = 0
     initial_qubits = 0
-    x_wires: list[int] = []
-    y_wires: list[int] = []
-    c_wire: list[int] = []
-    pos_wires: list[int] = []
-    total_wires: list[int] = list
+    x_wires: typing.List[int] = []
+    y_wires: typing.List[int] = []
+    c_wire: int = 0
+    pos_wires: typing.List[int] = []
+    total_wires: typing.List[int] = []
     n_aux_qubit = 0
     encoding = str
     num_carry = 0
