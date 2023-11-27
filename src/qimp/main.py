@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
     # result = execute(image.circuit, qasm, shots=numOfShots).result()  # ,,optimization_level=3
     # result = sim.run(circuit,shots=numOfShots,seed_simulator=12345).result()
-    print("---------------")
+    print("--------------------")
     print(result)
     print("--- %s seconds ---" % (time.time() - start_time))
     # print(len(result.get_counts(image.circuit)))
