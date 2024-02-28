@@ -5,11 +5,11 @@ import typing
 import matplotlib.pyplot as plt
 import numpy
 import numpy as np
-import pandas as pd
 from qiskit import ClassicalRegister, QuantumCircuit, QuantumRegister
 from qiskit.result import Result
 from scipy.ndimage import zoom
 from tqdm import tqdm
+
 
 def generate_example_image(side: int = 8) -> numpy.ndarray:
     """
@@ -100,7 +100,6 @@ class QuantumImage(object):
             self.image = zoom(self.image, self.zooming_factor)
             self.image = np.abs(self.image)
             self.image[self.image > 255] = 255
-   
 
         # compute the padding dimensions for row and cols.
         # works also for rectangular images
@@ -120,7 +119,7 @@ class QuantumImage(object):
         self.required_qubits = int(math.log2(np.shape(self.image)[0]) * 2)
         # Compute the number of required qubits to index rows and cols
 
-    def show_classical_image(self) -> None: 
+    def show_classical_image(self) -> None:
         """Show in a figure the original image, padded and eventually zoomed."""
         plt.figure()
         plt.imshow(self.image, cmap="gray")
@@ -147,6 +146,7 @@ class QuantumImage(object):
         self.circuit = QuantumCircuit(self.x_qubits, self.y_qubits, self.color_qubit, cr)
 
         self.initial_qubits = self.circuit.num_qubits
+
     def draw_circuit(self) -> None:  # pragma: no cover
         """Draws the circuit."""
         plt.figure(1)
@@ -166,7 +166,7 @@ class QuantumImage(object):
         extra = QuantumRegister(n, name)
         self.circuit.add_register(extra)
 
-    def reverse(self) -> None: # pragma: no cover
+    def reverse(self) -> None:  # pragma: no cover
         """Revert circuit.
 
         Returns: None
@@ -174,7 +174,7 @@ class QuantumImage(object):
         """
         self.circuit = self.circuit.reverse_bits()
 
-    def retrieve_and_show(self, result: Result, numOfShots: int) -> None: # pragma: no cover
+    def retrieve_and_show(self, result: Result, numOfShots: int) -> None:  # pragma: no cover
         """Run experiments and show result, it requires measurements.
 
         Args:
@@ -229,7 +229,7 @@ class QuantumImage(object):
         plt.title("retrieved image")
         plt.show()
 
-    def __info__(self) -> str: # pragma: no cover
+    def __info__(self) -> str:  # pragma: no cover
         """Show the state of the saved data of the image, useful for the reader.
 
         Returns: str

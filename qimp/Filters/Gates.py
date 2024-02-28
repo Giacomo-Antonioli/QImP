@@ -104,8 +104,7 @@ def encode_number(quantumImage: qimp.ImageEncoding.QuantumImage.QuantumImage, sh
         quantumImage (qimp.ImageEncoding.QuantumImage.QuantumImage): The quantum image object.
         shift (int): The number to be encoded.
 
-    Returns:
-        None
+    Returns: None
     """
     number = format(shift, "0" + str(quantumImage.num_summing) + "b")
     for index, element in enumerate(number[::-1]):

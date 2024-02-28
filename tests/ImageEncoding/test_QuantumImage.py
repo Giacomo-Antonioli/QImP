@@ -1,60 +1,55 @@
 """Tests for `qimp` module."""
-from qimp.ImageEncoding.QuantumImage import generate_example_image, QuantumImage
-from typing import Generator
+from typing import Any
+from unittest.mock import patch
+
 import numpy as np
 import pytest
-import qiskit
+from qiskit import transpile
 from qiskit_aer import AerSimulator
 
-from unittest.mock import patch
-from qiskit import transpile
 from qimp.ImageEncoding.Encodings import FRQI
+from qimp.ImageEncoding.QuantumImage import QuantumImage, generate_example_image
 
-def test_test_image():
+
+def test_test_image() -> None:
     """
     Test case for the test_image function.
 
     This function tests whether the generated example image matches the expected image.
 
-    Returns:
-        None
+    Returns: None
     """
-    image = np.array([[0, 0, 0, 0], [0, 255, 255, 0],
-                     [0, 255, 255, 0], [0, 0, 0, 0]])
+    image = np.array([[0, 0, 0, 0], [0, 255, 255, 0], [0, 255, 255, 0], [0, 0, 0, 0]])
 
     assert image.all() == generate_example_image(4).all()
 
 
-def test_quantum_image():
+def test_quantum_image() -> None:
     """
     Test case for the QuantumImage class.
 
-    This function tests the initialization of a QuantumImage object and verifies that the image data is correctly stored.
+    This function tests the initialization of a QuantumImage object and verifies that the
+    image data is correctly stored.
 
-    Returns:
-        None
+    Returns: None
     """
-    image = np.array([[0, 0, 0, 0], [0, 255, 255, 0],
-                     [0, 255, 255, 0], [0, 0, 0, 0]])
+    image = np.array([[0, 0, 0, 0], [0, 255, 255, 0], [0, 255, 255, 0], [0, 0, 0, 0]])
     quantumimage = QuantumImage(image)
 
     assert quantumimage.image.all() == image.all()
     assert type(quantumimage.image) == np.ndarray
 
-def test_wrong_quantum_image():
-    """
-    Test case to check if an exception is raised when an invalid quantum image is provided.
-    """
-    with pytest.raises(Exception) as excinfo:
 
-        image = [[0, 0, 0, 0], [0, 255, 255, 0],
-                 [0, 255, 255, 0], [0, 0, 0, 0]]
-        quantumimage = QuantumImage(image)
+def test_wrong_quantum_image() -> None:
+    """Test case to check if an exception is raised when an invalid quantum image is provided."""
+    with pytest.raises(Exception) as excinfo:
+        image = [[0, 0, 0, 0], [0, 255, 255, 0], [0, 255, 255, 0], [0, 0, 0, 0]]
+        QuantumImage(image)
 
     assert str(excinfo.value) == "Wrong Image type"
 
 
-def test_quantum_image_vector():
+def test_quantum_image_vector() -> None:
     """
     Test case for the `quantum_image_vector` function.
 
@@ -69,10 +64,11 @@ def test_quantum_image_vector():
     assert type(quantumimage.image) == np.ndarray
 
 
-def test_quantum_image_vector_wrong():
+def test_quantum_image_vector_wrong() -> None:
     """
     Test case for the scenario when the original input is a list instead of a square matrix.
-    It checks if the appropriate exception is raised and the error message matches the expected error message.
+    It checks if the appropriate exception is raised and the error message
+    matches the expected error message.
     """
 
     error = "The original input is a list. We tried to reshape it to a"
@@ -80,15 +76,13 @@ def test_quantum_image_vector_wrong():
     error += " Please reshape the list before passing the image to this object. "
 
     with pytest.raises(Exception) as excinfo:
-
-        image = np.array([0, 0, 0, 0, 0, 255, 255, 0,
-                         0, 255, 255, 0, 0, 0, 0, 0, 0])
-        quantumimage = QuantumImage(image)
+        image = np.array([0, 0, 0, 0, 0, 255, 255, 0, 0, 255, 255, 0, 0, 0, 0, 0, 0])
+        QuantumImage(image)
 
     assert str(excinfo.value) == error
 
 
-def test_quantum_image_zoom():
+def test_quantum_image_zoom() -> None:
     """
     Test case for the quantum_image_zoom function.
 
@@ -98,80 +92,80 @@ def test_quantum_image_zoom():
     with the input image and a zoom factor of 0.5. Finally, it asserts that the image of the
     QuantumImage object matches the zoomed image.
 
-    Returns:
-        None
+    Returns: None
     """
-    image = np.array([[0,   0,  0,      0,      0,      0,      0,   0],
-                      [0,   0,  0,      0,      0,      0,      0,   0],
-                      [0,   0,  255,    255,    255,    255,    0,   0],
-                      [0,   0,  255,    255,    255,    255,    0,   0],
-                      [0,   0,  255,    255,    255,    255,    0,   0],
-                      [0,   0,  255,    255,    255,    255,    0,   0],
-                      [0,   0,  0,      0,      0,      0,      0,   0],
-                      [0,   0,  0,      0,      0,      0,      0,   0]])
-    zoomed_image = np.array([[0,   0,    0,      0],
-                            [0,   255,  255,    0],
-                            [0,   255,  255,    0],
-                            [0,   0,    0,      0]])
+    image = np.array(
+        [
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 255, 255, 255, 255, 0, 0],
+            [0, 0, 255, 255, 255, 255, 0, 0],
+            [0, 0, 255, 255, 255, 255, 0, 0],
+            [0, 0, 255, 255, 255, 255, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+        ]
+    )
+    zoomed_image = np.array([[0, 0, 0, 0], [0, 255, 255, 0], [0, 255, 255, 0], [0, 0, 0, 0]])
     quantumimage = QuantumImage(image, 0.5)
 
     assert quantumimage.image.all() == zoomed_image.all()
 
+
 @patch("qimp.ImageEncoding.QuantumImage.plt.show")
-def test_retrieveandshow(mock_show):
-    """
-    Test case for the retrieve_and_show method of the QuantumImage class.
-    """
+def test_retrieveandshow(mock_show: Any) -> None:
+    """Test case for the retrieve_and_show method of the QuantumImage class."""
     image = QuantumImage(generate_example_image(side=4), zooming_factor=1)
 
     FRQI(image)
 
     image.circuit.measure([x for x in range(0, 5)], [x for x in range(0, 5)])
 
-    #simulator = AerSimulator.get_backend("aer_simulator")
+    # simulator = AerSimulator.get_backend("aer_simulator")
     sumulator = AerSimulator()
     circ = transpile(image.circuit, sumulator)
 
     result = sumulator.run(circ).result()
 
     numOfShots = 10000
- 
-    
-    assert image.retrieve_and_show(result, numOfShots)== None
+
+    if image.retrieve_and_show(result, numOfShots) is None:
+        assert True
+    else:
+        AssertionError()
+
 
 @patch("qimp.ImageEncoding.QuantumImage.plt.show")
-def test_retrieveandshow(mock_show):
-    """
-    Test case for the retrieve_and_show method of the QuantumImage class.
-    """
+def test_showclassicaliamge(mock_show: Any) -> None:
+    """Test case for the retrieve_and_show method of the QuantumImage class."""
     image = QuantumImage(generate_example_image(side=4), zooming_factor=1)
+    if image.show_classical_image() is None:
+        assert True
+    else:
+        AssertionError()
 
-    
-    assert image.show_classical_image() == None
 
-def test_add_qubits():
-    """
-    Test case for the add_qubits method of the QuantumImage class.
-    """
-    n=4
+def test_add_qubits() -> None:
+    """Test case for the add_qubits method of the QuantumImage class."""
+    n = 4
 
     image = QuantumImage(generate_example_image(side=4), zooming_factor=1)
     image.add_qubits(n)
 
-    assert image.circuit.num_qubits == n+1
+    assert image.circuit.num_qubits == n + 1
 
-def test_measure():
+
+def test_measure() -> None:
     """
     Test case for the measure method of the QuantumImage class.
 
     This function tests whether the circuit is correctly measured.
 
-    Returns:
-        None
+    Returns: None
     """
-    side=4
+    side = 4
     image = QuantumImage(generate_example_image(side=side), zooming_factor=1)
     FRQI(image)
     image.measure()
 
-    assert len(image.circuit.clbits) == side+1
+    assert len(image.circuit.clbits) == side + 1

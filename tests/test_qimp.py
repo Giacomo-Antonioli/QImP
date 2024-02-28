@@ -2,7 +2,9 @@
 from typing import Generator
 
 import pytest
+
 import qimp
+
 
 @pytest.fixture
 def version() -> Generator[str, None, None]:

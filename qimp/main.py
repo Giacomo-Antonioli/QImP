@@ -1,14 +1,15 @@
 from ImageEncoding.Encodings import FRQI
 from ImageEncoding.QuantumImage import QuantumImage, generate_example_image
+
 # Press the green button in the gutter to run the script.
 if __name__ == "__main__":
     image = QuantumImage(generate_example_image(side=4), zooming_factor=1)
     print(image.__info__())
-  
+
     image.show_classical_image()
     print("Encoding")
     FRQI(image)
-    
+
     print("Sobel")
     # sobel(image)
 
