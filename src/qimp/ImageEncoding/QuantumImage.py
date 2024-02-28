@@ -62,13 +62,13 @@ class QuantumImage(object):
     circuit = QuantumCircuit(1)
     image: np.ndarray = np.empty([1, 1])
 
-    def __init__(self, image: numpy.ndarray, zooming_factor: int = 1) -> None:
+    def __init__(self, image: numpy.ndarray, zooming_factor: float = 1.0) -> None:
         """
         Returns an object Quantum Image.
 
         Arguments:
             image (numpy.ndarray): Input image to be transformed
-            zooming_factor (int): Method required to encode the given image (default=FRQI)
+            zooming_factor (float): Method required to encode the given image (default=FRQI)
 
         Returns: None
 
