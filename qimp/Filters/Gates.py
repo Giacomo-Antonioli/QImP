@@ -97,7 +97,16 @@ def make_translation(
 
 
 def encode_number(quantumImage: qimp.ImageEncoding.QuantumImage.QuantumImage, shift: int) -> None:
-    """Encode number in binary with x gates."""
+    """
+    Encode number in binary with x gates.
+
+    Args:
+        quantumImage (qimp.ImageEncoding.QuantumImage.QuantumImage): The quantum image object.
+        shift (int): The number to be encoded.
+
+    Returns:
+        None
+    """
     number = format(shift, "0" + str(quantumImage.num_summing) + "b")
     for index, element in enumerate(number[::-1]):
         if element == "1":

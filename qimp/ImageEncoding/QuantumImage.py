@@ -11,8 +11,7 @@ from qiskit.result import Result
 from scipy.ndimage import zoom
 from tqdm import tqdm
 
-
-def test_image(side: int = 8) -> numpy.ndarray:
+def generate_example_image(side: int = 8) -> numpy.ndarray:
     """
     Creates a test image.
 
@@ -77,12 +76,10 @@ class QuantumImage(object):
             Exception: Wrong image format.
         """
 
-        if isinstance(image, (list, pd.core.series.Series)):  # Check if the input type is valid
-            self.image = np.array(image)
-        elif isinstance(image, np.ndarray):
+        if isinstance(image, np.ndarray):
             self.image = image
         else:
-            raise Exception("wrong type")
+            raise Exception("Wrong Image type")
 
         if self.image.ndim == 1:
             reshapeto = math.sqrt(len(self.image))
@@ -98,11 +95,12 @@ class QuantumImage(object):
         self.zooming_factor = zooming_factor
 
         if (
-            self.zooming_factor < 1.0
+            self.zooming_factor < 1.0 or self.zooming_factor > 1.0
         ):  # If the zooming factor is smaller than one then we apply the zoom
             self.image = zoom(self.image, self.zooming_factor)
             self.image = np.abs(self.image)
             self.image[self.image > 255] = 255
+   
 
         # compute the padding dimensions for row and cols.
         # works also for rectangular images
@@ -122,7 +120,7 @@ class QuantumImage(object):
         self.required_qubits = int(math.log2(np.shape(self.image)[0]) * 2)
         # Compute the number of required qubits to index rows and cols
 
-    def show_classical_image(self) -> None:
+    def show_classical_image(self) -> None: 
         """Show in a figure the original image, padded and eventually zoomed."""
         plt.figure()
         plt.imshow(self.image, cmap="gray")
@@ -149,26 +147,11 @@ class QuantumImage(object):
         self.circuit = QuantumCircuit(self.x_qubits, self.y_qubits, self.color_qubit, cr)
 
         self.initial_qubits = self.circuit.num_qubits
-
-    def draw_circuit(self) -> None:
+    def draw_circuit(self) -> None:  # pragma: no cover
         """Draws the circuit."""
         plt.figure(1)
         self.circuit.draw(output="mpl")
         plt.show()
-
-    def insert_qubits(self, n: int, name: str = "") -> None:
-        """Insert qubits in the image circuit.
-
-        Args:
-            n (int): number of qubits.
-            name (str): name to associate to the qubits.
-
-        Returns: None
-
-        """
-        qr1 = QuantumRegister(n, name)
-        self.circuit.regs.insert(0, qr1)
-        # TODO: Modify for insertion on top
 
     def add_qubits(self, n: int, name: str = "") -> None:
         """Append qubits.
@@ -183,7 +166,7 @@ class QuantumImage(object):
         extra = QuantumRegister(n, name)
         self.circuit.add_register(extra)
 
-    def reverse(self) -> None:
+    def reverse(self) -> None: # pragma: no cover
         """Revert circuit.
 
         Returns: None
@@ -191,7 +174,7 @@ class QuantumImage(object):
         """
         self.circuit = self.circuit.reverse_bits()
 
-    def retrieve_and_show(self, result: Result, numOfShots: int) -> None:
+    def retrieve_and_show(self, result: Result, numOfShots: int) -> None: # pragma: no cover
         """Run experiments and show result, it requires measurements.
 
         Args:
@@ -246,7 +229,7 @@ class QuantumImage(object):
         plt.title("retrieved image")
         plt.show()
 
-    def __info__(self) -> str:
+    def __info__(self) -> str: # pragma: no cover
         """Show the state of the saved data of the image, useful for the reader.
 
         Returns: str

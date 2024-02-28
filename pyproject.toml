@@ -32,8 +32,15 @@ classifiers=[
 
 
 [tool.poetry.dependencies]
-python = "<3.12,>=3.8"
+python = "<3.12,>=3.9"
 types-tqdm = "^4.66.0.5"
+pytest-cov = "^4.1.0"
+numpy = "^1.26.4"
+tqdm = "^4.66.2"
+matplotlib = "^3.8.3"
+pandas = "^2.2.1"
+qiskit-aer = "^0.13.3"
+qiskit = "1.0.1"
 
 
 [tool.poetry.group.dev.dependencies]

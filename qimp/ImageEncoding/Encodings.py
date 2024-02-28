@@ -116,6 +116,7 @@ def FRQI(quantumImage: QuantumImage) -> None:
         quantumImage.total_qubits = int(quantumImage.required_qubits + 1)
         quantumImage.compute_angles()
         quantumImage.init_circuit()
+        quantumImage.encoding = "FRQI"
     else:
         raise Exception("The image has allready been encoded")
 
