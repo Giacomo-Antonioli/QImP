@@ -43,7 +43,7 @@ def generate_example_image(side: int = 8) -> numpy.ndarray:
 class QuantumImage(object):
     """General class to implement represent a classical image in Qiskit."""
 
-    angles: numpy.ndarray = []
+    angles: numpy.ndarray = np.empty([1, 1])
     circuit = QuantumCircuit(1)
     x_qubits = QuantumRegister(1)
     y_qubits = QuantumRegister(1)
@@ -60,7 +60,7 @@ class QuantumImage(object):
     num_carry: int = 0
     num_summing: int = 0
     circuit = QuantumCircuit(1)
-    image = np.ndarray
+    image: np.ndarray = np.empty([1, 1])
 
     def __init__(self, image: numpy.ndarray, zooming_factor: int = 1) -> None:
         """
@@ -77,6 +77,8 @@ class QuantumImage(object):
         """
 
         if isinstance(image, np.ndarray):
+            print(type(image))
+            print(type(self.image))
             self.image = image
         else:
             raise Exception("Wrong Image type")
