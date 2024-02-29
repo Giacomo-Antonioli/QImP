@@ -124,7 +124,7 @@ def FRQI(quantumImage: QuantumImage) -> None:
     xyfrqi(quantumImage)  # 1
 
 
-def binarization(image: np.ndarray) -> list:
+def binarization(image: np.ndarray) -> np.chararray:
     """Binarization of a grayscale image.
 
     Args:
