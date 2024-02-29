@@ -52,7 +52,7 @@ class QuantumImage(object):
     initial_qubits: int = 0
     x_wires: typing.List[int] = []
     y_wires: typing.List[int] = []
-    c_wire: int = 0
+    c_wire: typing.List[int] = []
     pos_wires: typing.List[int] = []
     total_wires: typing.List[int] = []
     n_aux_qubit: int = 0
