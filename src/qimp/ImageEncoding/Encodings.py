@@ -21,8 +21,6 @@ def hadamard(circ: qiskit.QuantumCircuit, n: list) -> None:
         circ.h(i)
 
 
-
-
 def xyfrqi(quantumimage: QuantumImage) -> None:
     """FRQI encoding with xy variant.
 
