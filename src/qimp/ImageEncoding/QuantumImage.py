@@ -132,17 +132,17 @@ class QuantumImage(object):
         normalized_pixels = self.image / 255.0
         self.angles = np.arcsin(normalized_pixels)
 
-    def init_circuit(self) -> None:
+    def init_circuit(self, colorqubits: int) -> None:
         """Initialize circuit for the image."""
         self.x_qubits = QuantumRegister(self.required_qubits / 2, "x")
         self.y_qubits = QuantumRegister(self.required_qubits / 2, "y")
 
         self.x_wires = list(range(0, int(self.required_qubits / 2)))
         self.y_wires = list(range(int(self.required_qubits / 2), self.required_qubits))
-        self.c_wire = self.required_qubits
+        self.c_wire = list(range(self.required_qubits, self.required_qubits + colorqubits))
         self.pos_wires = list(self.x_wires) + list(self.y_wires)
-        self.total_wires = list(self.pos_wires) + [self.c_wire]
-        self.color_qubit = QuantumRegister(1, "c")
+        self.total_wires = list(self.pos_wires) + self.c_wire
+        self.color_qubit = QuantumRegister(colorqubits, "c")
         cr = ClassicalRegister(self.total_qubits, "classical")
 
         self.circuit = QuantumCircuit(self.x_qubits, self.y_qubits, self.color_qubit, cr)
@@ -216,7 +216,7 @@ class QuantumImage(object):
                     pbar.update(1)
                     pass
         plt.figure(1)
-        multip = 32
+        multip = numOfShots / 100
 
         retrieve_image_0 *= multip * 255.0
         retrieve_image_0 = retrieve_image_0.astype("int")
