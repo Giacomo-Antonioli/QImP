@@ -1,21 +1,29 @@
+import math
+
 from ImageEncoding.Encodings import FRQI
 from ImageEncoding.QuantumImage import QuantumImage, generate_example_image
 
 # Press the green button in the gutter to run the script.
 if __name__ == "__main__":
-    image = QuantumImage(generate_example_image(side=4), zooming_factor=1)
+    side = 16
+    ncolorsencoding = 8
+    image = QuantumImage(generate_example_image(side=side), zooming_factor=1)
     print(image.__info__())
-
-    image.show_classical_image()
+    print(image.image)
+    # image.show_classical_image()
     print("Encoding")
     FRQI(image)
-
+    # print(image.circuit)
     print("Sobel")
     # sobel(image)
 
     print("drawing circ")
     # image.draw_circuit()
-    image.circuit.measure([x for x in range(0, 5)], [x for x in range(0, 5)])
+
+    image.circuit.measure(
+        [x for x in range(0, int(2 * math.log(side, 2)) + ncolorsencoding)],
+        [x for x in range(0, int(2 * math.log(side, 2)) + ncolorsencoding)],
+    )
     print(image.circuit)
     import time
 
@@ -29,7 +37,7 @@ if __name__ == "__main__":
     result = simulator.run(circ).result()
     # In[ ]:
     #############################################
-    numOfShots = 10000
+    numOfShots = 1000000
 
     start_time = time.time()
 
