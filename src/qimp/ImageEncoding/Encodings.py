@@ -134,12 +134,11 @@ def binarization(image: np.ndarray) -> list:
         list: Binary values of the pixels of the image.
     """
     binarizedangles = np.chararray((image.shape[0], image.shape[1]), itemsize=8)
-    print(binarizedangles)
+
     for i in range(image.shape[0]):
         for j in range(image.shape[1]):
-            print("here is", np.binary_repr(int(image[i][j]), width=8))
             binarizedangles[i][j] = np.binary_repr(int(image[i][j]), width=8)
-            print("i save:", binarizedangles[i][j])
+
     return binarizedangles
 
 
