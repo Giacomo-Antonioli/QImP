@@ -133,11 +133,13 @@ def binarization(image: np.ndarray) -> list:
     Returns:
         list: Binary values of the pixels of the image.
     """
-    binarizedangles = image.copy().tolist()
+    binarizedangles = np.chararray((image.shape[0], image.shape[1]), itemsize=8)
+    print(binarizedangles)
     for i in range(image.shape[0]):
         for j in range(image.shape[1]):
-            binarizedangles[i][j] = list(np.binary_repr(int(image[i][j]), width=8))
-
+            print("here is", np.binary_repr(int(image[i][j]), width=8))
+            binarizedangles[i][j] = np.binary_repr(int(image[i][j]), width=8)
+            print("i save:", binarizedangles[i][j])
     return binarizedangles
 
 
@@ -164,14 +166,11 @@ def NEQR(quantumimage: QuantumImage) -> None:
 
     hadamard(quantumimage.circuit, [x for x in range(quantumimage.required_qubits)])
     bitsneeded = "{0:0" + str(int(quantumimage.required_qubits / 2)) + "b}"
-    print(bitsneeded)
+
     nqubits: int = quantumimage.circuit.num_qubits
-    print("TOTQUB: " + str(nqubits))
-    print("requiredqubits:" + str(quantumimage.required_qubits))
+
     y_old = ""
     for index_row, rows in enumerate(tqdm(binarizedangles)):
-        print("index_row: " + str(index_row))
-        print("rows: " + str(rows))
         x_old = bitsneeded.format(index_row - 1)[::-1]
         if index_row == 0:
             changed = False
@@ -215,25 +214,25 @@ def NEQR(quantumimage: QuantumImage) -> None:
                             )
                         )
                         # print("tonegaty:"+str(int(nqubits+index-required_qubits-1-n_aux_qubit)))
-                print(tonegatey)
+
                 quantumimage.circuit.x(np.abs(tonegatey) + quantumimage.n_aux_qubit)
 
-                print(i)
-                for index, element in enumerate(i):
-                    print("index: " + str(index))
-                    print("element: " + str(element))
-                    if element == "1":
-                        print("index: " + str(index))
-                        print(quantumimage.required_qubits + quantumimage.n_aux_qubit + index)
-
-                        quantumimage.circuit.mcx(
-                            list(
-                                range(
-                                    quantumimage.n_aux_qubit,
-                                    quantumimage.n_aux_qubit + quantumimage.required_qubits,
-                                )
-                            ),
-                            quantumimage.required_qubits + quantumimage.n_aux_qubit + index,
-                        )
+                print("printing i:", i)
+                for index, element in enumerate(list(str(i))):
+                    if element != "b" and element != "'":
+                        print("printing element:", element)
+                        if element == "1":
+                            quantumimage.circuit.mcx(
+                                list(
+                                    range(
+                                        quantumimage.n_aux_qubit,
+                                        quantumimage.n_aux_qubit + quantumimage.required_qubits,
+                                    )
+                                ),
+                                quantumimage.required_qubits
+                                + quantumimage.n_aux_qubit
+                                + index
+                                - 2,
+                            )
             y_old = bitsneeded.format(index_cols)[::-1]
         quantumimage.circuit.barrier()
