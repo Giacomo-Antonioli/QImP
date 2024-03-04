@@ -50,7 +50,7 @@ qiskit = "1.0.1"
 pre-commit = "^3.5.0"
 invoke = "^2.2.0"
 bump2version = "^1.0.1"
-watchdog = {version = "^3.0.0", extras = ["watchmedo"]}
+watchdog = {version = ">=3,<5", extras = ["watchmedo"]}
 
 [tool.poetry.group.test.dependencies]
 pytest = ">=7.4.3,<9.0.0"
