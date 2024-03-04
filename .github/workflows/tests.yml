@@ -90,10 +90,9 @@ jobs:
           pip install poetry
           poetry config virtualenvs.in-project true
 
-      - name: Download coverage data
-        uses: actions/download-artifact@v2.0.10
-        with:
-          name: coverage-data
+      - uses: actions/download-artifact@v4
+      - name: Display structure of downloaded files
+        run: ls -R
 
       - name: Create coverage report
         shell: bash
