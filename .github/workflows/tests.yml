@@ -93,7 +93,7 @@ jobs:
       - name: Download coverage data
         uses: actions/download-artifact@v2.0.10
         with:
-          name: coverage-dataR
+          name: coverage-data
 
       - name: Create coverage report
         shell: bash
