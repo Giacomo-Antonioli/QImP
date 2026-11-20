@@ -67,9 +67,9 @@ jobs:
         run: nox --force-color -s security
 
       - name: Upload coverage data
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v4
         with:
-          name: coverage-data
+          name: coverage-data-${{ matrix.os }}-${{ matrix.python-version }}
           path: ".coverage.*"
 
   coverage:
@@ -91,9 +91,10 @@ jobs:
           poetry config virtualenvs.in-project true
 
       - name: Download coverage data
-        uses: actions/download-artifact@v2.0.10
+        uses: actions/download-artifact@v4
         with:
-          name: coverage-data
+          pattern: coverage-data-*
+          merge-multiple: true
 
       - name: Create coverage report
         shell: bash
