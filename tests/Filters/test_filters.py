@@ -1,4 +1,5 @@
 """Tests for `qimp` module."""
+
 from typing import Generator
 
 import pytest
