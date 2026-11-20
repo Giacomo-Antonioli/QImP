@@ -72,6 +72,19 @@ and uses a million-shot retrieval configuration.
 
 ## Development
 
+Install the development tools and Git hooks:
+
+```console
+$ poetry install
+$ poetry run pre-commit install
+```
+
+Run all configured hooks at any time with:
+
+```console
+$ poetry run pre-commit run --all-files
+```
+
 Run the targeted test suite directly with pytest:
 
 ```console
