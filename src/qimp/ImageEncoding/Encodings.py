@@ -1,4 +1,5 @@
 """Encodings File."""
+
 import numpy as np
 import qiskit
 from qiskit.circuit.library.standard_gates import RYGate

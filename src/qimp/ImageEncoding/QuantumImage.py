@@ -1,4 +1,5 @@
 """Quantum image class."""
+
 import math
 import typing
 
