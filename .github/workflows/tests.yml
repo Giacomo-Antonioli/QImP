@@ -9,14 +9,14 @@ on:
 jobs:
   linting:
     name: Linting
-    runs-on: self-hosted
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.1.1
 
-      - name: Set up Python 3.9
+      - name: Set up Python 3.11
         uses: actions/setup-python@v4.7.1
         with:
-          python-version: 3.9
+          python-version: 3.11
 
       - name: Install system deps
         shell: bash
@@ -32,11 +32,11 @@ jobs:
   tests:
     needs: linting
     name: ${{ matrix.os }} / ${{ matrix.python-version }}
-    runs-on: ${{ matrix.os }}-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [self-hosted, MacOS, Windows]
-        python-version: ['3.9', '3.10', '3.11']
+        os: [ubuntu-24.04, macos-latest, windows-latest]
+        python-version: ['3.11']
       fail-fast: true
     steps:
       - uses: actions/checkout@v4.1.1
@@ -50,7 +50,7 @@ jobs:
         shell: bash
         run: |
           pip install nox-poetry
-          pip install poetry
+          pip install poetry poetry-plugin-export
           poetry config virtualenvs.in-project true
 
       - name: Run mypy with nox
@@ -62,38 +62,40 @@ jobs:
         run: nox --force-color -s tests-${{ matrix.python-version }}
 
       - name: Run securtity check
-        if: matrix.python-version == '3.11' && matrix.os == 'Ubuntu'
+        if: matrix.python-version == '3.11' && matrix.os == 'ubuntu-24.04'
         shell: bash
         run: nox --force-color -s security
 
       - name: Upload coverage data
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v4
         with:
-          name: coverage-data
+          name: coverage-data-${{ matrix.os }}-${{ matrix.python-version }}
           path: ".coverage.*"
+          include-hidden-files: true
 
   coverage:
     needs: tests
-    runs-on: self-hosted
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.1.1
       
-      - name: Set up Python 3.9
+      - name: Set up Python 3.11
         uses: actions/setup-python@v4.7.1
         with:
-          python-version: 3.9
+          python-version: 3.11
 
       - name: Install system deps
         shell: bash
         run: |
           pip install nox-poetry
-          pip install poetry
+          pip install poetry poetry-plugin-export
           poetry config virtualenvs.in-project true
 
       - name: Download coverage data
-        uses: actions/download-artifact@v2.0.10
+        uses: actions/download-artifact@v4
         with:
-          name: coverage-data
+          pattern: coverage-data-*
+          merge-multiple: true
 
       - name: Create coverage report
         shell: bash

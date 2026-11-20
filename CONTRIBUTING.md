@@ -25,7 +25,15 @@ To install the local development requirements inside a virtual environment run:
 
 ```
 $ poetry install
+$ poetry run pre-commit install
 $ poetry run inv install-hooks
+```
+
+The `pre-commit install` command enables repository checks before each commit. Run the
+same configured hooks without committing by running:
+
+```
+$ poetry run pre-commit run --all-files
 ```
 
 > For more information about `poetry` check the [docs](https://python-poetry.org/docs/).

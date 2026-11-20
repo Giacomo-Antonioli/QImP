@@ -8,14 +8,14 @@ on:
 
 jobs:
   release:
-    runs-on: self-hosted
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.1.1
 
-      - name: Set up Python 3.9
+      - name: Set up Python 3.11
         uses: actions/setup-python@v4.7.1
         with:
-          python-version: 3.9
+          python-version: 3.11
 
       - name: Install system deps
         shell: bash
@@ -44,7 +44,7 @@ jobs:
   github_release:
     needs: release
     name: Create Github Release
-    runs-on: self-hosted
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4.1.1
 
