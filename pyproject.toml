@@ -18,9 +18,6 @@ classifiers=[
     
     "Natural Language :: English",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
 ]
 
@@ -35,15 +32,16 @@ pythonpath = [
 ]
 
 [tool.poetry.dependencies]
-python = "<3.12,>=3.9"
+python = "<3.12,>=3.11"
 types-tqdm = "^4.66.0.5"
 pytest-cov = "^4.1.0"
 numpy = "^1.26.4"
-tqdm = "^4.66.2"
-matplotlib = "^3.8.3"
+tqdm = "^4.66.3"
+matplotlib = "^3.10.8"
+pillow = ">=13.0.0,<14"
 pandas = "^2.2.1"
 qiskit-aer = "^0.13.3"
-qiskit = "1.0.1"
+qiskit = "^1.4.1"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -51,9 +49,12 @@ pre-commit = "^3.5.0"
 invoke = "^2.2.0"
 bump2version = "^1.0.1"
 watchdog = {version = ">=3,<5", extras = ["watchmedo"]}
+setuptools = ">=83.0.0"
+filelock = ">=4.2.1,<5"
+pygments = ">=2.20.0,<3"
 
 [tool.poetry.group.test.dependencies]
-pytest = ">=7.4.3,<9.0.0"
+pytest = ">=9.0.3,<10.0.0"
 xdoctest = "^1.1.2"
 coverage = {version = "^7.3.2", extras = ["toml"]}
 pytest-cov = "^4.1.0"
@@ -67,7 +68,6 @@ flake8 = ">=4.0.1,<5.0.0"
 flakeheaven = "^3.3.0"
 flake8-builtins = "^2.2.0"
 flake8-blind-except = "^0.2.1"
-flake8-logging-format = "^0.9.0"
 flake8-bugbear = "^23.3.12"
 flake8-annotations = "^2.9.1"
 flake8-docstrings = "^1.7.0"

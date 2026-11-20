@@ -36,7 +36,7 @@ Quantum image manipulation package and Qiskit circuit wrapper.
 
 QImP is a **pre-alpha / experimental** project. Encoding and image-construction APIs are
 present and covered by tests, while filtering and the example script should be treated as
-in-development. The package targets Python 3.9 through 3.11.
+in-development. The package targets Python 3.11.
 
 ## Quickstart
 
