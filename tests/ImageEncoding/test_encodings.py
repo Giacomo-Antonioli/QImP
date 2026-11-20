@@ -1,7 +1,8 @@
+import numpy as np
 import pytest
 import qiskit
 
-from qimp.ImageEncoding.Encodings import FRQI, NEQR, hadamard
+from qimp.ImageEncoding.Encodings import FRQI, NEQR, binarization, hadamard
 from qimp.ImageEncoding.QuantumImage import QuantumImage, generate_example_image
 
 """Tests for `qimp` module."""
@@ -30,6 +31,18 @@ def test_hadamard() -> None:
     )
 
     # Add more assertions if needed
+
+
+def test_binarization_returns_eight_bit_strings() -> None:
+    """Test that NEQR converts grayscale pixels to eight-bit binary values."""
+    image = np.array([[0, 1], [127, 255]])
+
+    result = binarization(image)
+
+    assert result.tolist() == [
+        [b"00000000", b"00000001"],
+        [b"01111111", b"11111111"],
+    ]
 
 
 def test_FRQI() -> None:

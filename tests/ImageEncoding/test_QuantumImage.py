@@ -40,14 +40,12 @@ def test_quantum_image() -> None:
     assert type(quantumimage.image) == np.ndarray
 
 
-# def test_wrong_quantum_image() -> None:
-#    """Test case to check if an exception is raised when an invalid quantum image is provided."""
-#    with pytest.raises(Exception) as excinfo:
-#        image = [[0, 0, 0, 0], [0, 255, 255, 0], [0, 255, 255, 0], [0, 0, 0, 0]]
-#        QuantumImage(image)
+def test_wrong_quantum_image() -> None:
+    """Test that a non-NumPy image raises the documented type error."""
+    image = [[0, 0, 0, 0], [0, 255, 255, 0], [0, 255, 255, 0], [0, 0, 0, 0]]
 
-#    assert str(excinfo.value) == "Wrong Image type"
-# comneted out because in github actions check it fails
+    with pytest.raises(Exception, match="Wrong Image type"):
+        QuantumImage(image)
 
 
 def test_quantum_image_vector() -> None:
