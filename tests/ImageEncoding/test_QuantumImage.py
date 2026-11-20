@@ -45,7 +45,7 @@ def test_wrong_quantum_image() -> None:
     image = [[0, 0, 0, 0], [0, 255, 255, 0], [0, 255, 255, 0], [0, 0, 0, 0]]
 
     with pytest.raises(Exception, match="Wrong Image type"):
-        QuantumImage(image)
+        QuantumImage(image)  # type: ignore[arg-type]
 
 
 def test_quantum_image_vector() -> None:
